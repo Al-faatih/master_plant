@@ -1,8 +1,8 @@
-class Taks {
+class Task {
   final String description;
   final bool complate;
   
-  const Taks({
+  const Task({
     this.complate = false,
     this.description = '',
   });
