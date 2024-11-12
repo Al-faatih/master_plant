@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Pastikan kelas Plan dan Task sudah terdefinisi atau diimpor
+
 class Plan {
   final String name;
   final List<Task> tasks;
@@ -36,22 +36,24 @@ class _PlanScreenState extends State<PlanScreen> {
     ); 
   }  
 
-  Widget _buildList() {
-    // Implementasi _buildList() sesuai kebutuhan aplikasi
-    return ListView.builder(
-      itemCount: plan.tasks.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text('Task ${index + 1}'),
-        );
-      },
+  Widget _buildList() { 
+    return ListView.builder( 
+      itemCount: plan.tasks.length, 
+      itemBuilder: (context, index) => 
+        _buildTaskTile(plan.tasks[index], index), 
+    ); 
+  }
+
+  Widget _buildTaskTile(Task task, int index) {
+    return ListTile(
+      title: Text('Task ${index + 1}'), 
     );
   }
 
   @override 
   Widget build(BuildContext context) { 
     return Scaffold( 
-      appBar: AppBar(title: const Text('Andrian Roby Maulana Alfaatih')), // Ganti "Namaku" sesuai nama panggilan
+      appBar: AppBar(title: const Text('Andrian Roby Maulana Alfaatih')), 
       body: _buildList(), 
       floatingActionButton: _buildAddTaskButton(), 
     ); 
