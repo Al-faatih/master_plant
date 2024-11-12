@@ -1,5 +1,3 @@
-import 'package:master_plant/views/task.dart';
-
 import './task.dart'; 
  
 class Plan { 
