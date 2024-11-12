@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Plan {
   final String name;
   final List<Task> tasks;
@@ -9,7 +8,10 @@ class Plan {
 }
 
 class Task {
-  const Task();
+  final String description;
+  final bool complete;
+
+  Task({this.description = '', this.complete = false});
 }
 
 class PlanScreen extends StatefulWidget { 
@@ -29,7 +31,7 @@ class _PlanScreenState extends State<PlanScreen> {
         setState(() { 
           plan = Plan( 
             name: plan.name, 
-            tasks: List<Task>.from(plan.tasks)..add(const Task()), 
+            tasks: List<Task>.from(plan.tasks)..add(Task()), 
           ); 
         }); 
       }, 
@@ -44,11 +46,40 @@ class _PlanScreenState extends State<PlanScreen> {
     ); 
   }
 
-  Widget _buildTaskTile(Task task, int index) {
-    return ListTile(
-      title: Text('Task ${index + 1}'), 
-    );
-  }
+  Widget _buildTaskTile(Task task, int index) { 
+    return ListTile( 
+      leading: Checkbox( 
+        value: task.complete, 
+        onChanged: (selected) { 
+          setState(() { 
+            plan = Plan( 
+              name: plan.name, 
+              tasks: List<Task>.from(plan.tasks) 
+                ..[index] = Task( 
+                  description: task.description, 
+                  complete: selected ?? false, 
+                ), 
+            ); 
+          });
+        }, 
+      ), 
+      title: TextFormField( 
+        initialValue: task.description, 
+        onChanged: (text) { 
+          setState(() { 
+            plan = Plan( 
+              name: plan.name, 
+              tasks: List<Task>.from(plan.tasks) 
+                ..[index] = Task( 
+                  description: text, 
+                  complete: task.complete, 
+                ), 
+            ); 
+          }); 
+        }, 
+      ), 
+    ); 
+  }  
 
   @override 
   Widget build(BuildContext context) { 
@@ -57,5 +88,5 @@ class _PlanScreenState extends State<PlanScreen> {
       body: _buildList(), 
       floatingActionButton: _buildAddTaskButton(), 
     ); 
-  } 
+  }
 }
