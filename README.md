@@ -5,6 +5,10 @@
 ![alt text](<hasil_langkah9_praktikum1.png)
 ![alt text](<hasil_akhir_prakikum1.png>)
 
+# 
+# Jelaskan maksud dari langkah 4 pada praktikum tersebut! Mengapa dilakukan demikian?
+# perintah tersebut digunakan unttuk meng eksport akses ke file plan.dart dan task.dart, sehingga file dapat meng impor secara langsung 
+
 
 
 A new Flutter project.
